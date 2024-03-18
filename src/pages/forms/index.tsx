@@ -1,12 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form } from "@/partials/forms"
-import { FC } from "react"
+import { Forms } from "@/pages/forms/partials/forms"
 
-export const FormPage: FC = () => {
-    const handleSubmit = async () => {
-
-    }
-
+export const FormPage = () => {
     return (
         <div className='w-screen h-screen flex justify-center items-center'>
             <Card>
@@ -18,7 +13,7 @@ export const FormPage: FC = () => {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Form onSubmit={handleSubmit} />
+                    <Forms />
                 </CardContent>
             </Card>
         </div>

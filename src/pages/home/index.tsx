@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FC, FormEvent, useContext, useState } from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -16,6 +15,7 @@ import { useNavigate } from "react-router-dom"
 import { useToast } from "@/components/ui/use-toast"
 import AxiosContext from "@/context/axios"
 import { useProject } from "@/context/project"
+import { ptBR } from 'date-fns/locale'
 
 interface FormProps {
     onSubmit: (formData: FormData) => void
@@ -53,7 +53,7 @@ const Form: FC<FormProps> = ({ onSubmit }) => {
                         )}
                     >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {formData?.data ? format(formData?.data, "PPP") : <span>Escolha a data</span>}
+                        {formData?.data ? format(new Date(formData?.data), "dd 'de' MMMM 'de' yyyy", { locale: ptBR }) : <span>Escolha a data</span>}
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -62,6 +62,7 @@ const Form: FC<FormProps> = ({ onSubmit }) => {
                         selected={formData?.data}
                         onSelect={handleChange}
                         initialFocus
+                        locale={ptBR}
                     />
                 </PopoverContent>
             </Popover>
@@ -86,7 +87,7 @@ export const Home: FC = () => {
                             title: "Criando conteúdo",
                             description: `Conteúdo criado com a data: ${formData.day}`,
                         })
-                        navigate(`/forms?date=${formData.day}`)
+                        navigate(`/forms?date=${formData.day}&id=${response.data.id}`)
                     }
                 })
                 .catch((error) => {
@@ -104,7 +105,7 @@ export const Home: FC = () => {
                 title: "Abrindo conteúdo",
                 description: `Carregando data: ${formData.day}`,
             })
-            navigate(`/dashboard?show=${formData.day}`)
+            navigate(`/dashboard?date=${formData.day}`)
         }
     }
 

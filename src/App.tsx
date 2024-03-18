@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { FormPage, Home } from './pages'
+import { DashboardPage, FormPage, Home } from './pages'
 import { Toaster } from "@/components/ui/toaster"
 import { ProjectProvider } from './context/project'
 
@@ -10,6 +10,7 @@ export const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/forms' element={<FormPage />} />
+          <Route path='/dashboard' element={<DashboardPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
