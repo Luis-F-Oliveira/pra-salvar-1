@@ -4,6 +4,7 @@
  
 html, body {
   background: #27272a;
+  font-family: "Poppins", sans-serif;
 }
 
 .rdp [aria-hidden="true"] {

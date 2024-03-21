@@ -1,19 +1,20 @@
 export interface IData {
-    matriculation: number
-    name: string
-    gender: 'M' | 'F' | undefined
-    admission_date: string
-    cpf: number
-    birth_date: string
-    rg: number
-    issue_rg: string
-    uf_rg: string
-    mother_name: string
-    father_name?: string
-    birthplace: string
-    nationality: string
-    nationality_uf: string
-    blood_type: 'A+' | 'AB+' | 'B+' | 'O+' | 'A-' | 'AB-' | 'B-' | 'O-' | undefined
-    identification_number: 0 // deixar internamente
-    issue_date: string
+    id: number | undefined
+    matriculation: string | undefined
+    name: string | undefined
+    gender: string | undefined
+    admission_date: string | undefined
+    cpf: string | undefined
+    birth_date: string | undefined
+    rg: string | undefined
+    issue_rg: string | undefined
+    uf_rg: string | undefined
+    mother_name: string | undefined | null
+    father_name: string | undefined | null
+    birthplace: string | undefined
+    nationality: string | undefined
+    nationality_uf: string | undefined
+    blood_type: string | undefined
+    identification_number: string | undefined
+    issue_date: string | undefined
 }

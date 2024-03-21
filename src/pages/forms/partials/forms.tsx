@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 import { useContext } from "react"
 import AxiosContext from "@/context/axios"
+import { toast } from "@/components/ui/use-toast"
 
 const formSchema = z.object({
     name: z.string().min(1),
@@ -73,11 +74,12 @@ export const Forms = () => {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: { 
+        defaultValues: {
             identification_number: "0",
             father_name: null,
             mother_name: null,
-            staffing_id: idValue !== null ? idValue : undefined },
+            staffing_id: idValue !== null ? idValue : undefined
+        },
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -90,10 +92,20 @@ export const Forms = () => {
 
         api.post('informations', formattedValues)
             .then((response) => {
-                console.log(response)
+                if (response.status === 201) {
+                    toast({
+                        title: "Sucesso",
+                        description: "Elemento adicionado com sucesso",
+                    })
+                }
             })
             .catch((error) => {
-                console.log(error)
+                if (error.response.status === 500) {
+                    toast({
+                        title: "Erro",
+                        description: "Elemento não criado",
+                    })
+                }
             })
     }
 
